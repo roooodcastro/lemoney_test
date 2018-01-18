@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: lemoney_development
+  pool: 5
+
+test:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: lemoney_test
+  pool: 5
