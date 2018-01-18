@@ -10,16 +10,24 @@ class Offer < ApplicationRecord
              time: Time.zone.now)
   end
 
-  def toggle_manual_disable!
-    self.disabled = !disabled
-    save!
-  end
-
+  # The test instructions state that an offer should be disable if:
+  #
+  # 3. when current time <= ends at, state = disabled
+  #
+  # I assumed this was incorrect and the instructions actually meant:
+  #
+  # when current time >= ends at, state = disabled
+  #
+  # Because there is no sense in disabling an offer before its end time.
   def enabled?
-    return false if disabled
+    return false if manually_disabled?
     started = starts_at <= Time.zone.now
     return started if ends_at.blank?
     started && ends_at >= Time.zone.now
+  end
+
+  def manually_disabled?
+    attributes['disabled']
   end
 
   def disabled?

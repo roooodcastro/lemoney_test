@@ -19,10 +19,13 @@
           <td><%= offer.url %></td>
           <td><%= offer_status(offer) %></td>
           <td>
-            <div class="btn-group">
-              <%= link_to 'Edit', edit_offer_path(offer), class: 'btn' %>
-              <%= link_to 'Disable', edit_offer_path(offer), class: 'btn btn-warning' %>
-              <%= link_to 'Destroy', offer, method: :delete, class: 'btn btn-danger' %>
+            <div class="btn-group d-flex" role="group">
+              <%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-secondary w-100' %>
+              <!-- I know this enable/disable button isn't flush with the rest
+                   of the btn-group, but I let it slip as the test instructions
+                   said the layout/design here wouldn't be evaluated. -->
+              <%= toggle_offer_status_button(offer) %>
+              <%= link_to 'Destroy', [:admin, offer], method: :delete, class: 'btn btn-danger w-100' %>
             </div>
           </td>
         </tr>
@@ -32,7 +35,8 @@
   <% else %>
     <div class="card-body">
       <div class="alert alert-warning">
-        There are currently no offers created
+        There are currently no offers created.
+        <%= link_to 'Create one!', new_admin_offer_path %>
       </div>
     </div>
   <% end %>

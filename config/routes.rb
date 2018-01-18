@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'admin/offers#index'
 
   namespace :admin do
-    resources :offers
+    resources :offers, except: [:show]
     resources :home, only: [:index]
   end
 

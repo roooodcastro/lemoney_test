@@ -18,9 +18,9 @@ class Admin
 
     def create
       @offer = Offer.new(offer_params)
-      created = offer.save
+      created = @offer.save
       flash[:notice] = 'Offer successfully created!' if created
-      return redirect_to @offer if created
+      return redirect_to admin_offers_path if created
       flash.now[:error] = "Offer couldn't be created!"
       render :new
     end
@@ -28,7 +28,7 @@ class Admin
     def update
       updated = @offer.update_attributes(offer_params)
       flash[:notice] = 'Offer successfully updated!' if updated
-      return redirect_to @offer if updated
+      return redirect_to admin_offers_path if updated
       flash.now[:error] = "Offer couldn't be updated!"
       render :edit
     end
@@ -36,7 +36,7 @@ class Admin
     def destroy
       destroyed = @offer.destroy
       flash[:notice] = 'Offer successfully destroyed!' if destroyed
-      return redirect_to offers_path if destroyed
+      return redirect_to admin_offers_path if destroyed
       flash.now[:error] = "Offer couldn't be destroyed!"
       render :show
     end
@@ -49,7 +49,7 @@ class Admin
 
     def offer_params
       params.require(:offer).permit(:advertiser_name, :url, :description,
-                                    :starts_at, :ends_at, :premium)
+                                    :starts_at, :ends_at, :premium, :disabled)
     end
   end
 end

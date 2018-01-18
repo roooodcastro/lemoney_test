@@ -1,0 +1,49 @@
+<%= form_for [:admin, offer] do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h4 class="my-0">Offer information</h4>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.label :advertiser_name %>
+        <%= f.text_field :advertiser_name, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :url %>
+        <%= f.text_field :url, class: 'form-control', type: :url, required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control noresize', rows: 10,
+                        maxlength: 500, required: true %>
+        <small class="text-muted">
+          Remaining characters:
+          <span id="offerDescriptionCounter"><%= 500 - f.object.description.to_s.size %></span>
+        </small>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :starts_at %>
+        <%= f.text_field :starts_at, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :ends_at %>
+        <%= f.text_field :ends_at, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= f.check_box(:premium, class: 'custom-control-input') %>
+          <%= f.label(:premium, class: 'custom-control-label') %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Back', url_for(:back), class: 'btn btn-secondary' %>
+      <%= f.submit 'Save Offer', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
