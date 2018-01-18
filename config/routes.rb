@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root_to 'home#index'
+  root to: 'admin/offers#index'
 
   namespace :admin do
     resources :offers

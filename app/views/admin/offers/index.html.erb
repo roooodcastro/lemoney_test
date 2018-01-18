@@ -1,0 +1,7 @@
+<%= title 'Offers' %>
+
+<div class="card card-body mb-3">
+  <%= link_to 'Create a new Offer', new_admin_offer_path, class: 'btn btn-primary' %>
+</div>
+
+<%= render partial: 'admin/offers/offers', locals: { offers: @offers } %>
