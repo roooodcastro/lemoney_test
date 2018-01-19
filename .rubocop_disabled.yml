@@ -167,3 +167,5 @@ Style/FormatStringToken:
 Performance/HashEachMethods:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false

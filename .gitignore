@@ -14,9 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/doc/**/*
 
 /node_modules
 /yarn-error.log
 
 .byebug_history
 .idea/**/*
+
+spec/examples.txt

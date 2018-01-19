@@ -2,7 +2,7 @@
 
 class Admin
   class OffersController < ApplicationController
-    before_action :load_offer, only: [:show, :edit, :update, :destroy]
+    before_action :load_offer, only: [:show, :edit, :update]
 
     def index
       @offers = Offer.newest_first
@@ -34,11 +34,12 @@ class Admin
     end
 
     def destroy
-      destroyed = @offer.destroy
-      flash[:notice] = 'Offer successfully destroyed!' if destroyed
-      return redirect_to admin_offers_path if destroyed
+      Offer.find(params[:id]).destroy
+      flash[:notice] = 'Offer successfully destroyed!'
+    rescue ActiveRecord::RecordNotFound
       flash.now[:error] = "Offer couldn't be destroyed!"
-      render :show
+    ensure
+      redirect_to admin_offers_path
     end
 
     private

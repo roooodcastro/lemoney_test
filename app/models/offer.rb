@@ -6,7 +6,7 @@ class Offer < ApplicationRecord
 
   scope :enabled, -> do
     where(disabled: false)
-      .where('starts_at <= :time && (ends_at == null or ends_at >= :time',
+      .where('starts_at <= :time and (ends_at is null or ends_at >= :time)',
              time: Time.zone.now)
   end
 
