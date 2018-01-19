@@ -5,7 +5,7 @@ class Admin
     before_action :load_offer, only: [:show, :edit, :update, :destroy]
 
     def index
-      @offers = Offer.all
+      @offers = Offer.newest_first
     end
 
     def show; end

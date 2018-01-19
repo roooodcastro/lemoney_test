@@ -13,7 +13,7 @@
       </thead>
       <tbody>
       <% offers.each do |offer| %>
-        <tr>
+        <tr style="background-color: <%= offer_status_bg_color(offer) %>">
           <td><%= offer.id %></td>
           <td><%= offer.advertiser_name %></td>
           <td><%= offer.url %></td>

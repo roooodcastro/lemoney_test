@@ -10,6 +10,8 @@ class Offer < ApplicationRecord
              time: Time.zone.now)
   end
 
+  scope :newest_first, -> { order 'id desc' }
+
   # The test instructions state that an offer should be disable if:
   #
   # 3. when current time <= ends at, state = disabled

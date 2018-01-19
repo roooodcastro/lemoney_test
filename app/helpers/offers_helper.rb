@@ -23,4 +23,8 @@ module OffersHelper
       concat f.submit 'Disable', class: 'btn btn-warning btn-block'
     end
   end
+
+  def offer_status_bg_color(offer)
+    offer.enabled? ? '#ddffdd' : '#ffdddd'
+  end
 end
