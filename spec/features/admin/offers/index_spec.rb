@@ -13,9 +13,14 @@ RSpec.feature '.index admin/offers' do
         with_tag(:a, with: { href: new_admin_offer_path })
       end
     end
+
+    scenario 'User can go to new offer page' do
+      click_link 'Create a new Offer'
+      expect(current_path).to eq new_admin_offer_path
+    end
   end
 
-  context 'There are offers' do
+  context 'There are enabled offers' do
     let(:offer) { FactoryBot.create :offer }
 
     scenario 'User sees existing offers' do
@@ -26,6 +31,22 @@ RSpec.feature '.index admin/offers' do
         expect(page).to have_selector("input[type=submit][value='Disable']")
         expect(page).to have_content 'Destroy'
       end
+    end
+
+    scenario 'User can go to edit page' do
+      within('table tbody tr') do
+        click_link 'Edit'
+        expect(current_path).to eq edit_admin_offer_path(offer)
+      end
+    end
+
+    scenario 'User can destroy an offer', js: true do
+      within('table tbody tr') do
+        click_link 'Destroy'
+      end
+      expect(current_path).to eq admin_offers_path
+      expect(page).not_to have_selector('table tbody tr')
+      expect(page).not_to have_content offer.advertiser_name
     end
   end
 
