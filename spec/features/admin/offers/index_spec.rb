@@ -28,4 +28,18 @@ RSpec.feature '.index admin/offers' do
       end
     end
   end
+
+  context 'There are disabled offers' do
+    let(:offer) { FactoryBot.create :offer, :disabled_manually }
+
+    scenario 'User sees existing offers' do
+      expect(page).to have_content('Existing Offers')
+      within('table tbody tr') do
+        expect(page).to have_content offer.advertiser_name
+        expect(page).to have_content 'Edit'
+        expect(page).to have_selector("input[type=submit][value='Enable']")
+        expect(page).to have_content 'Destroy'
+      end
+    end
+  end
 end
