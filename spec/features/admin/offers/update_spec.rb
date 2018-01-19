@@ -1,4 +1,4 @@
-include OfferSteps
+# frozen_string_literal: true
 
 RSpec.feature '.index admin/offers' do
   let(:offer) { FactoryBot.create :offer }

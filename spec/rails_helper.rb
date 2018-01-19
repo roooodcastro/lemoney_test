@@ -16,6 +16,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include RSpecHtmlMatchers
+  config.include OfferSteps, type: :feature
 
   config.use_transactional_fixtures = true
 

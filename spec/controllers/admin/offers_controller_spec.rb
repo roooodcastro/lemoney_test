@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Admin::OffersController do
   let(:offer) { FactoryBot.create :offer }
 

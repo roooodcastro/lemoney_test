@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OfferSteps
   def fill_in_offer_form_correctly
     data = random_offer_attributes

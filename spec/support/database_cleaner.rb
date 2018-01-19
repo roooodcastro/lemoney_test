@@ -6,11 +6,11 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do |spec|
-    if spec.metadata[:js]
-      DatabaseCleaner.strategy = :deletion
-    else
-      DatabaseCleaner.strategy = :transaction
-    end
+    DatabaseCleaner.strategy = if spec.metadata[:js]
+                                 :deletion
+                               else
+                                 :transaction
+                               end
   end
 
   config.before(:each) { DatabaseCleaner.start }

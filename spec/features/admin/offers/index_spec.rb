@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.feature '.index admin/offers' do
   before(:each) do
     offer

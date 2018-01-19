@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe TitleHelper do
   describe '#title' do
     subject { helper.title(title, subtitle) }
