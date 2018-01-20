@@ -32,6 +32,6 @@ ActiveRecord::Base.transaction do
 
   # Let's create an admin user:
   Rails.logger.info 'Creating Admin'
-  User.create(user_name: 'Admin', email: 'admin@example.com',
+  User.create(username: 'Admin', email: 'admin@example.com',
               password: '123456')
 end
