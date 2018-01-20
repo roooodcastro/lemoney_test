@@ -2,6 +2,7 @@
 
 class Admin
   class OffersController < ApplicationController
+    before_action :authenticate_user!
     before_action :load_offer, only: [:show, :edit, :update]
 
     def index

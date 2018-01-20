@@ -2,6 +2,9 @@
 
 RSpec.describe Admin::OffersController do
   let(:offer) { FactoryBot.create :offer }
+  let(:user) { FactoryBot.create :user }
+
+  before(:each) { sign_in user }
 
   describe 'Actions' do
     describe 'GET index' do

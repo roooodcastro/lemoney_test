@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.feature '.index admin/offers' do
+  let(:user) { FactoryBot.create :user }
+
   before(:each) do
+    sign_in_manually user
     visit admin_offers_path
     click_link 'Create a new Offer'
   end

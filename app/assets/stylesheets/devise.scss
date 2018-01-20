@@ -1,0 +1,19 @@
+.login-form {
+  .email {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .password {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.navbar-nav.navbar-user {
+  background-color: $gray-900;
+  margin: -0.5rem -1rem;
+  padding: 0;
+  .nav-link { padding: 1rem 1.5rem; color: $gray-200; }
+  span.nav-link { background-color: mix($gray-800, $gray-900); }
+}

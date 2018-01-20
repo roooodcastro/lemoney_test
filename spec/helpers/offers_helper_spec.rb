@@ -49,17 +49,30 @@ RSpec.describe OffersHelper do
     end
   end
 
-  describe '#offer_status_bg_color' do
-    subject { helper.offer_status_bg_color(offer) }
+  describe '#offer_time_remaining' do
+    subject { helper.offer_time_remaining(offer) }
 
-    context 'When offer is enabled' do
-      let(:offer) { FactoryBot.build :offer, :enabled }
-      it { is_expected.to eq '#ddffdd' }
+    let(:offer) { FactoryBot.build :offer, ends_at: ends_at }
+    let(:time) { Time.zone.today.to_time }
+
+    before(:each) { allow(Time.zone).to receive(:now).and_return(time) }
+
+    context 'When the offer does not have an end time' do
+      let(:ends_at) { nil }
+
+      it { is_expected.to be_blank }
     end
 
-    context 'When offer is disabled' do
-      let(:offer) { FactoryBot.build :offer, :disabled_finished }
-      it { is_expected.to eq '#ffdddd' }
+    context 'When the offer is set to end within the next 2 days' do
+      let(:ends_at) { time + 23.hours }
+
+      it { is_expected.to eq '23h:00m:00s' }
+    end
+
+    context 'When the offer is set to end in more than 2 days' do
+      let(:ends_at) { time + 80.hours }
+
+      it { is_expected.to eq '3 days' }
     end
   end
 end

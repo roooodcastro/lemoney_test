@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.feature '.index admin/offers' do
+RSpec.feature '.update admin/offers' do
   let(:offer) { FactoryBot.create :offer }
+  let(:user) { FactoryBot.create :user }
 
   before(:each) do
+    sign_in_manually user
     offer
     visit admin_offers_path
     click_link 'Edit'

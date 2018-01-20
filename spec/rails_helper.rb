@@ -17,6 +17,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include RSpecHtmlMatchers
   config.include OfferSteps, type: :feature
+  config.include UserSteps, type: :feature
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.use_transactional_fixtures = true
 
