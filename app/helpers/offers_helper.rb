@@ -27,4 +27,11 @@ module OffersHelper
   def offer_status_bg_color(offer)
     offer.enabled? ? '#ddffdd' : '#ffdddd'
   end
+
+  def offer_time_remaining(offer)
+    return unless offer.ends_at
+    seconds_to_end = offer.ends_at - Time.zone.now
+    return seconds_to_time(seconds_to_end) if seconds_to_end < 2.days
+    distance_of_time_in_words_to_now(offer.ends_at)
+  end
 end

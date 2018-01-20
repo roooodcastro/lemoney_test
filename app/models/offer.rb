@@ -11,6 +11,8 @@ class Offer < ApplicationRecord
   end
 
   scope :newest_first, -> { order 'id desc' }
+  scope :order_by_premium, -> { order 'premium desc' }
+  scope :order_by_remaining_time, -> { order 'ends_at nulls first' }
 
   # The test instructions state that an offer should be disable if:
   #

@@ -49,8 +49,8 @@ class Admin
     end
 
     def offer_params
-      params.require(:offer).permit(:advertiser_name, :url, :description,
-                                    :starts_at, :ends_at, :premium, :disabled)
+      params.require(:offer).permit([:advertiser_name, :url, :description,
+                                     :starts_at, :ends_at, :premium, :disabled])
     end
   end
 end

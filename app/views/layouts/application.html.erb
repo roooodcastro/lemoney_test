@@ -2,14 +2,21 @@
 <html lang="<%= I18n.locale %>">
 <head>
   <title><%= yield(:title) if content_for?(:title) %></title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <%= csrf_meta_tags %>
 
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:500" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="<%= controller_name %> <%= action_name %>">
-<%= render partial: 'layouts/navbar' %>
+<body class="<%= controller_path.tr('/', '_') %> <%= action_name %>">
+<% if controller.class.parent == Admin %>
+  <%= render partial: 'layouts/navbar_admin' %>
+<% else %>
+  <%= render partial: 'layouts/navbar_client' %>
+<% end %>
 
 <div class="container">
   <%= yield %>
