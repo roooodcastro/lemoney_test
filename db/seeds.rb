@@ -27,13 +27,12 @@ ActiveRecord::Base.transaction do
   # Offers with end dates
   Rails.logger.info 'Creating 35 Offers with ends_at date'
   35.times.each do
+    starts_at = Faker::Time.between(5.days.ago, 5.days.from_now, :midnight)
+    ends_at = starts_at + Random.rand(8).days
     Offer.create(advertiser_name: Faker::Company.name, url: Faker::Internet.url,
                  description: Faker::Lorem.sentence,
-                 starts_at: Faker::Time.between(2.days.ago, 5.days.from_now,
-                                                :midnight),
-                 ends_at: Faker::Time.between(5.days.from_now, 14.days.from_now,
-                                              :midnight),
-                 disabled: Random.rand > 0.7, premium: Random.rand > 0.8)
+                 starts_at: starts_at, ends_at: ends_at,
+                 disabled: Random.rand > 0.8, premium: Random.rand > 0.7)
   end
 
   # Let's create an admin user:
