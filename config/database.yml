@@ -1,13 +1,19 @@
-development:
+default: &default
   adapter: postgresql
-  host: localhost
   encoding: unicode
+  pool: <%= ENV.fetch("DB_POOL") { 5 } %>
+
+development:
+  <<: *default
+  host: localhost
   database: lemoney_development
-  pool: 5
 
 test:
-  adapter: postgresql
+  <<: *default
   host: localhost
-  encoding: unicode
   database: lemoney_test
-  pool: 5
+
+production:
+  <<: *default
+  database: lemoney_production
+  url: <%= ENV['DATABASE_URL'] %>
