@@ -17,5 +17,6 @@
 //= require bootstrap-sprockets
 //= require momentjs
 
+//= require turbolinks_anchor_fix
 //= require offers/index
 //= require admin/offers/new
