@@ -13,7 +13,7 @@ ActiveRecord::Base.transaction do
   5.times.each do
     Offer.create(advertiser_name: Faker::Company.name, url: Faker::Internet.url,
                  description: Faker::Lorem.sentence,
-                 starts_at: Faker::Time.between(7.days.ago, 7.days.from_now,
+                 starts_at: Faker::Time.between(2.days.ago, 5.days.from_now,
                                                 :midnight),
                  disabled: Random.rand > 0.7, premium: Random.rand > 0.8)
   end
@@ -23,10 +23,15 @@ ActiveRecord::Base.transaction do
   15.times.each do
     Offer.create(advertiser_name: Faker::Company.name, url: Faker::Internet.url,
                  description: Faker::Lorem.sentence,
-                 starts_at: Faker::Time.between(7.days.ago, 7.days.from_now,
+                 starts_at: Faker::Time.between(2.days.ago, 5.days.from_now,
                                                 :midnight),
-                 ends_at: Faker::Time.between(7.days.from_now, 14.days.from_now,
+                 ends_at: Faker::Time.between(5.days.from_now, 14.days.from_now,
                                               :midnight),
                  disabled: Random.rand > 0.7, premium: Random.rand > 0.8)
   end
+
+  # Let's create an admin user:
+  Rails.logger.info 'Creating Admin'
+  User.create(user_name: 'Admin', email: 'admin@example.com',
+              password: '123456')
 end
