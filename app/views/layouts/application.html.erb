@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
 <head>
-  <title><%= yield(:title) if content_for?(:title) %></title>
+  <title><%= content_for?(:title) ? "#{yield(:title)} - Lemoney Test" : 'Lemoney Test' %></title>
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <%= csrf_meta_tags %>
