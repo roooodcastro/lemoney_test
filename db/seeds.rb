@@ -7,10 +7,16 @@ Rails.logger = Logger.new(STDOUT)
 
 # Don't save anything if there's an error somewhere.
 ActiveRecord::Base.transaction do
-  # First we start creating some offers:
+  # First we empty the database:
+  Rails.logger.info 'Destroying all Offers...'
+  Offer.destroy_all
+  Rails.logger.info 'Destroying all Users...'
+  User.destroy_all
+
+  # Then we start creating some offers:
   # Offers without end dates
-  Rails.logger.info 'Creating 5 Offers without ends_at date'
-  5.times.each do
+  Rails.logger.info 'Creating 15 Offers without ends_at date'
+  15.times.each do
     Offer.create(advertiser_name: Faker::Company.name, url: Faker::Internet.url,
                  description: Faker::Lorem.sentence,
                  starts_at: Faker::Time.between(2.days.ago, 5.days.from_now,
@@ -19,8 +25,8 @@ ActiveRecord::Base.transaction do
   end
 
   # Offers with end dates
-  Rails.logger.info 'Creating 15 Offers with ends_at date'
-  15.times.each do
+  Rails.logger.info 'Creating 35 Offers with ends_at date'
+  35.times.each do
     Offer.create(advertiser_name: Faker::Company.name, url: Faker::Internet.url,
                  description: Faker::Lorem.sentence,
                  starts_at: Faker::Time.between(2.days.ago, 5.days.from_now,
