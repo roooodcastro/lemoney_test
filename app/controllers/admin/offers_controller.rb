@@ -38,7 +38,7 @@ class Admin
       Offer.find(params[:id]).destroy
       flash[:notice] = 'Offer successfully destroyed!'
     rescue ActiveRecord::RecordNotFound
-      flash.now[:error] = "Offer couldn't be destroyed!"
+      flash[:error] = "Offer couldn't be destroyed!"
     ensure
       redirect_to admin_offers_path
     end
