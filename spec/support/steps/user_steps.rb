@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserSteps
   # Signs in the user manually, by going to the log in page, filling out the
   # form and submitting it.
