@@ -1,24 +1,34 @@
-# README
+# Test challenge for Lemoney
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instructions to execute the presented application:
 
-Things you may want to cover:
+### Heroku
 
-* Ruby version
+This app is also hosted on Heroku, and to access it, go to:
 
-* System dependencies
+    lemoney-test.herokuapp.com
 
-* Configuration
+### Local
 
-* Database creation
+To execute the app locally, just follow these regular steps to execute a Rails app:
 
-* Database initialization
+If you're not using RVM, check if you're using Ruby 2.4.x
 
-* How to run the test suite
+    $ bundle install
+    $ rails db:create
+    $ rails db:schema:load
+    $ rails db:seed
+    $ rails s
+    
+The seeds file will create an admin user, as well as 50 randomly
+generated offers, with 15 being offers without an end date, and 35 being offers
+with end dates.
 
-* Services (job queues, cache servers, search engines, etc.)
+### To execute the automated tests, just run the rspec command:
 
-* Deployment instructions
+    $ rspec
 
-* ...
+### To login to the admin area of the app, login as the admin user created by the seeds:
+
+    email: admin@example.com
+    senha: 123456
