@@ -5,8 +5,8 @@ module UserSteps
   # form and submitting it.
   def sign_in_manually(user)
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
+    fill_in User.human_attribute_name(:email), with: user.email
+    fill_in User.human_attribute_name(:password), with: user.password
+    click_button I18n.t('devise.sessions.new.sign_in')
   end
 end

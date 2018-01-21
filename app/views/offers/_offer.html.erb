@@ -3,16 +3,20 @@
   <h5 class="mb-5 mt-3"><%= offer.advertiser_name %></h5>
 
   <% if offer.premium %>
-    <span class="offer-premium-badge">Premium!</span>
+    <span class="offer-premium-badge">
+      <%= Offer.human_attribute_name :premium %>!
+    </span>
   <% end %>
 
-  <%= link_to 'Shop Now', offer.url, class: "btn btn-lg mx-5 #{offer.premium ? 'btn-success' : 'btn-info'}" %>
+  <%= link_to t('messages.shop_now'), offer.url,
+              class: "btn btn-lg mx-5 #{offer.premium ? 'btn-success' : 'btn-info'}" %>
 
   <% if offer.ends_at %>
     <span id="offer_time_counter_<%= offer.id %>"
           class="badge badge-pill text-danger border border-danger mx-5 mt-3"
           data-ends_at="<%= offer.ends_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>">
-      Ends in <%= offer_time_remaining(offer) %>
+      <%= t('messages.ends_in') %>
+      <strong><%= offer_time_remaining(offer) %></strong>
     </span>
   <% else %>
   <span class="badge text-white border border-white mt-3" aria-hidden="true">

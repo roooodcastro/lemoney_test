@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :offers, except: [:show]
   end
 
+  resource :locales, only: [:update]
   resources :offers, only: [:index]
 end

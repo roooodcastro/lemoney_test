@@ -1,0 +1,39 @@
+---
+pt-BR:
+  messages:
+    back: Voltar
+    back_to_top: Voltar ao Topo
+    change_language: 'Trocar idioma para:'
+    client_home: Página Inicial do Cliente
+    close: Fechar
+    confirm: 'Você tem certeza?'
+    description: Consiga muito dinheiro de volta com ofertas inexistentes!
+    destroy: Deletar
+    edit: Editar
+    ends_in: Termina em
+    home: Página Inicial
+    minimum_characters: caracteres no mínimo
+    offers: Ofertas Cadastradas
+    offer:
+      create_success: Oferta cadastrada com sucesso!
+      create_error: "Houve um ou mais erros ao cadastrar a oferta: %{errors}"
+      create_one: Crie uma!
+      destroy_success: Oferta excluída com sucesso!
+      destroy_error: Houve um erro na exclusão da oferta!
+      disable: Desativar
+      edit: Editar Oferta
+      empty: Não há nenhuma oferta criada!
+      enabled_true: ativa
+      enabled_false: inativa
+      enable: Ativar
+      information: Informações da Oferta
+      latest: Ofertas Recentes
+      new_button: Cadastrar Nova Oferta
+      new_title: Cadastrar nova oferta
+      save: Salvar Oferta
+      update_success: Oferta alterada com sucesso!
+      update_error: "Houve um ou mais erros ao alterar a oferta: %{errors}"
+    remaining_characters: 'Caracteres Restantes:'
+    shop_now: Compre Agora
+    sign_out: Sair
+    show: Exibir

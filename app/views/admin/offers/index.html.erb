@@ -1,7 +1,8 @@
-<%= title 'Offers' %>
+<%= title "#{Offer.model_name.human}s" %>
 
 <div class="card card-body mb-3">
-  <%= link_to 'Create a new Offer', new_admin_offer_path, class: 'btn btn-primary' %>
+  <%= link_to t('messages.offer.new_button'), new_admin_offer_path,
+              class: 'btn btn-primary' %>
 </div>
 
 <%= render partial: 'admin/offers/offers', locals: { offers: @offers } %>

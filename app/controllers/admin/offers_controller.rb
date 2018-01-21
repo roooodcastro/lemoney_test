@@ -20,25 +20,27 @@ class Admin
     def create
       @offer = Offer.new(offer_params)
       created = @offer.save
-      flash[:notice] = 'Offer successfully created!' if created
+      flash[:notice] = t('messages.offer.create_success') if created
       return redirect_to admin_offers_path if created
-      flash.now[:error] = "Offer couldn't be created!"
+      flash.now[:error] = t('messages.offer.create_error',
+                            errors: @offer.errors.full_messages.join(', '))
       render :new
     end
 
     def update
       updated = @offer.update_attributes(offer_params)
-      flash[:notice] = 'Offer successfully updated!' if updated
+      flash[:notice] = t('messages.offer.update_success') if updated
       return redirect_to admin_offers_path if updated
-      flash.now[:error] = "Offer couldn't be updated!"
+      flash.now[:error] = t('messages.offer.update_error',
+                            errors: @offer.errors.full_messages.join(', '))
       render :edit
     end
 
     def destroy
       Offer.find(params[:id]).destroy
-      flash[:notice] = 'Offer successfully destroyed!'
+      flash[:notice] = t('messages.offer.destroy_success')
     rescue ActiveRecord::RecordNotFound
-      flash[:error] = "Offer couldn't be destroyed!"
+      flash[:error] = t('messages.offer.destroy_error')
     ensure
       redirect_to admin_offers_path
     end

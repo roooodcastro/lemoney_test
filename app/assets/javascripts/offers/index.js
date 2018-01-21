@@ -23,7 +23,7 @@ function updateOfferTimeCounter() {
         return disableOffer(span.closest('.card-offer'));
     }
     var timeToEndString = formatOfferEndTime(moment(millisecondsToEnd));
-    span.text(timeToEndString);
+    span.find('strong').text(timeToEndString);
 }
 
 // Formats the remaining time for an offer, in the format (example):
@@ -32,7 +32,7 @@ function formatOfferEndTime(timeToEnd) {
     var hours = ('00' + Math.floor(timeToEnd / ONE_HOUR)).slice(-2);
     var minutes = ('00' + timeToEnd.minutes()).slice(-2);
     var seconds = ('00' + timeToEnd.seconds()).slice(-2);
-    return 'Ends in ' + hours + 'h:' + minutes + 'm:' + seconds + 's';
+    return hours + 'h:' + minutes + 'm:' + seconds + 's';
 }
 
 // Disables an offer that has ended while the user was browsing the page.

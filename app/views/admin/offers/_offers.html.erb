@@ -1,14 +1,14 @@
 <div class="card">
-  <div class="card-header"><h4 class="my-0">Existing Offers</h4></div>
+  <div class="card-header"><h4 class="my-0"><%= t('messages.offers') %></h4></div>
   <% if offers.present? %>
     <table class="table table-condensed table-bordered table-hover mb-0">
       <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>URL</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th>ID</th>
+        <th><%= Offer.human_attribute_name :advertiser_name %></th>
+        <th><%= Offer.human_attribute_name :url %></th>
+        <th><%= Offer.human_attribute_name :status %></th>
+        <th><%= Offer.human_attribute_name :actions %></th>
       </tr>
       </thead>
       <tbody>
@@ -20,12 +20,14 @@
           <td><%= offer_status(offer) %></td>
           <td>
             <div class="btn-group d-flex" role="group">
-              <%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-secondary w-100' %>
+              <%= link_to t('messages.edit'), edit_admin_offer_path(offer), class: 'btn btn-secondary w-100' %>
               <!-- I know this enable/disable button isn't flush with the rest
                    of the btn-group, but I let it slip as the test instructions
                    said the layout/design here wouldn't be evaluated. -->
               <%= toggle_offer_status_button(offer) %>
-              <%= link_to 'Destroy', [:admin, offer], method: :delete, class: 'btn btn-danger w-100' %>
+              <%= link_to t('messages.destroy'), [:admin, offer], method: :delete,
+                          class: 'btn btn-danger w-100',
+                          data: { confirm: t('messages.confirm') } %>
             </div>
           </td>
         </tr>
@@ -35,8 +37,8 @@
   <% else %>
     <div class="card-body">
       <div class="alert alert-warning">
-        There are currently no offers created.
-        <%= link_to 'Create one!', new_admin_offer_path %>
+        <%= t('messages.offer.empty') %>
+        <%= link_to t('messages.offer.create_one'), new_admin_offer_path %>
       </div>
     </div>
   <% end %>

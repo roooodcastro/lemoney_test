@@ -3,6 +3,7 @@
 <head>
   <title><%= content_for?(:title) ? "#{yield(:title)} - Lemoney Test" : 'Lemoney Test' %></title>
 
+  <meta name="description" content="<%= t('messages.description') %>">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <%= csrf_meta_tags %>
 
@@ -20,7 +21,7 @@
 
 <div class="container py-3">
   <%= bootstrap_flash %>
-  
+
   <%= yield %>
 </div>
 

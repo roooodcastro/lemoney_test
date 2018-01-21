@@ -2,7 +2,7 @@
 
 module OffersHelper
   def offer_status(offer)
-    offer.enabled? ? 'enabled' : 'disabled'
+    t("messages.offer.enabled_#{offer.enabled?}")
   end
 
   def toggle_offer_status_button(offer)
@@ -13,14 +13,16 @@ module OffersHelper
   def enable_offer_button(offer)
     form_for([:admin, offer], html: { class: 'w-100' }) do |f|
       concat f.hidden_field :disabled, value: false
-      concat f.submit 'Enable', class: 'btn btn-success btn-block'
+      concat f.submit t('messages.offer.enable'),
+                      class: 'btn btn-success btn-block'
     end
   end
 
   def disable_offer_button(offer)
     form_for([:admin, offer], html: { class: 'w-100' }) do |f|
       concat f.hidden_field :disabled, value: true
-      concat f.submit 'Disable', class: 'btn btn-warning btn-block'
+      concat f.submit t('messages.offer.disable'),
+                      class: 'btn btn-warning btn-block'
     end
   end
 

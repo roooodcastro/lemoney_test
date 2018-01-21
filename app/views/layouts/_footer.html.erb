@@ -1,7 +1,18 @@
 <footer class="footer">
-  <div class="container-fluid py-5 mt-4 bg-light text-center text-dark border-top">
-    <p>Lemoney Test - Rodrigo Castro Azevedo - 2018</p>
-
-    <p class="mb-0"><a href="#">Back to Top</a></p>
-  </div>
+  <p>Lemoney Test - Rodrigo Castro Azevedo - 2018</p>
+  <p>
+    <%= t 'messages.change_language' %>
+    <% if I18n.locale == I18n.default_locale %>
+      <%= link_to locales_path(locale: 'en'), method: :patch do %>
+        English
+        <%= flag_icon(:us) %>
+      <% end %>
+    <% else %>
+      <%= link_to locales_path(locale: 'pt-BR'), method: :patch do %>
+        Português
+        <%= flag_icon(:br) %>
+      <% end %>
+    <% end %>
+  </p>
+  <p class="mb-0"><a href="#"><%= t('messages.back_to_top') %></a></p>
 </footer>

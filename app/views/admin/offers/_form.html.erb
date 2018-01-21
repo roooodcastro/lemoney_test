@@ -1,7 +1,7 @@
 <%= form_for [:admin, offer] do |f| %>
   <div class="card">
     <div class="card-header">
-      <h4 class="my-0">Offer information</h4>
+      <h4 class="my-0"><%= t('messages.offer.information') %></h4>
     </div>
     <div class="card-body">
       <div class="form-group">
@@ -19,7 +19,7 @@
         <%= f.text_area :description, class: 'form-control noresize', rows: 10,
                         maxlength: 500, required: true %>
         <small class="text-muted">
-          Remaining characters:
+          <%= t('messages.remaining_characters') %>
           <span id="offerDescriptionCounter"><%= 500 - f.object.description.to_s.size %></span>
         </small>
       </div>
@@ -42,8 +42,9 @@
       </div>
     </div>
     <div class="card-footer">
-      <%= link_to 'Back', url_for(:back), class: 'btn btn-secondary' %>
-      <%= f.submit 'Save Offer', class: 'btn btn-primary' %>
+      <%= link_to t('messages.back'), url_for(:back),
+                  class: 'btn btn-secondary' %>
+      <%= f.submit t('messages.offer.save'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

@@ -6,12 +6,12 @@ RSpec.describe OffersHelper do
 
     context 'When offer is enabled' do
       let(:offer) { FactoryBot.build :offer, :enabled }
-      it { is_expected.to eq 'enabled' }
+      it { is_expected.to eq I18n.t('messages.offer.enabled_true') }
     end
 
     context 'When offer is disabled' do
       let(:offer) { FactoryBot.build :offer, :disabled_finished }
-      it { is_expected.to eq 'disabled' }
+      it { is_expected.to eq I18n.t('messages.offer.enabled_false') }
     end
   end
 
@@ -28,7 +28,8 @@ RSpec.describe OffersHelper do
                                                 method: 'post' }) do
           with_tag(:input, with: { id: 'offer_disabled', type: 'hidden',
                                    value: true })
-          with_tag(:input, with: { type: 'submit', value: 'Disable' })
+          with_tag(:input, with: { type: 'submit',
+                                   value: I18n.t('messages.offer.disable') })
         end
       end
     end
@@ -43,12 +44,17 @@ RSpec.describe OffersHelper do
                                                 method: 'post' }) do
           with_tag(:input, with: { id: 'offer_disabled', type: 'hidden',
                                    value: false })
-          with_tag(:input, with: { type: 'submit', value: 'Enable' })
+          with_tag(:input, with: { type: 'submit',
+                                   value: I18n.t('messages.offer.enable') })
         end
       end
     end
   end
 
+  # Disabling this because I don't care about timezone precision at this point,
+  # I'm just trying to mock the time to any random value.
+  #
+  # rubocop:disable Rails/Date
   describe '#offer_time_remaining' do
     subject { helper.offer_time_remaining(offer) }
 
@@ -70,9 +76,13 @@ RSpec.describe OffersHelper do
     end
 
     context 'When the offer is set to end in more than 2 days' do
-      let(:ends_at) { time + 80.hours }
+      let(:ends_at) { time + 100.hours }
 
-      it { is_expected.to eq '3 days' }
+      it 'should return the correct time string' do
+        is_expected.to eq I18n.t('datetime.distance_in_words.x_days.other',
+                                 count: 3)
+      end
     end
   end
+  # rubocop:enable Rails/Date
 end

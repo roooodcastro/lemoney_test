@@ -3,18 +3,19 @@
 module OfferSteps
   def fill_in_offer_form_correctly
     data = random_offer_attributes
-    fill_in 'Advertiser name', with: data[:advertiser_name]
-    fill_in 'Url', with: data[:url]
-    fill_in 'Description', with: data[:description]
-    fill_in 'Starts at', with: data[:starts_at]
+    fill_in Offer.human_attribute_name(:advertiser_name),
+            with: data[:advertiser_name]
+    fill_in Offer.human_attribute_name(:url), with: data[:url]
+    fill_in Offer.human_attribute_name(:description), with: data[:description]
+    fill_in Offer.human_attribute_name(:starts_at), with: data[:starts_at]
     data
   end
 
   def fill_in_offer_form_incorrectly
     data = random_offer_attributes
-    fill_in 'Advertiser name', with: ''
-    fill_in 'Url', with: data[:url]
-    fill_in 'Description', with: data[:description]
+    fill_in Offer.human_attribute_name(:advertiser_name), with: ''
+    fill_in Offer.human_attribute_name(:url), with: data[:url]
+    fill_in Offer.human_attribute_name(:description), with: data[:description]
     data
   end
 
